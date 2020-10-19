@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////
 //
 // File: index.js
-// Login Screen. Accepts login information and moves on to Conference Page. 
+// Login Screen. Accepts login information and moves on to Conference Page.
 // It also has extra utility to create a roomId
 //
 /////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ var createRoom = function (callback) {
             }
         }
     };
-    xhttp.open("POST", "../api/create-room/", true);
+    xhttp.open("POST", "../api/room/multi", true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
     xhttp.send();
