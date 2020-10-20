@@ -84,7 +84,7 @@ document.getElementById('create_room').addEventListener('click', function (event
 });
 
 var createRoomMulti = function (callback) {
-	var apiUrl = '/api/room/multi';
+	var apiUrl = '/api/room/multi/';
 	if (typeof baseUrl !== 'undefined') {
 		// todo - to support PHP app api url
 		apiUrl = baseUrl + apiUrl;
