@@ -75,7 +75,7 @@ document.getElementById('login_form').addEventListener('submit', function (event
 var loadingElem = document.querySelector('.loading');
 document.getElementById('create_room').addEventListener('click', function (event) {
     loadingElem.classList.add('yes');
-    createRoom(function (result) {
+    createRoomMulti(function (result) {
         document.getElementById("roomName").value = result;
         document.getElementById("create_room_div").style.display = "none";
         document.getElementById("message").innerHTML = "We have prefilled the form with room-id. Share it with someone you want to talk to";
@@ -83,7 +83,7 @@ document.getElementById('create_room').addEventListener('click', function (event
     });
 });
 
-var createRoom = function (callback) {
+var createRoomMulti = function (callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
