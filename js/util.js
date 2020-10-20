@@ -7,6 +7,11 @@
 /////////////////////////////////////////////////////
 
 var createToken = function (details, callback) {
+	var apiUrl = '/api/create-token/';
+	if (typeof baseUrl !== 'undefined') {
+		// todo - to support PHP app api url
+		apiUrl = baseUrl + apiUrl;
+	}
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -26,7 +31,7 @@ var createToken = function (details, callback) {
             }
         }
     };
-    xhttp.open("POST", "../api/create-token/", true);
+    xhttp.open("POST", apiUrl, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(details));
 };

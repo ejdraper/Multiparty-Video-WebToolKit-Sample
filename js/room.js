@@ -7,6 +7,13 @@
 
 
 var joinRoom = function (roomName, callback) {
+	var apiUrl = '/api/get-room/';
+	if (typeof baseUrl !== 'undefined') {
+		// todo - to support PHP app api url
+		apiUrl = baseUrl + apiUrl + '?roomId=' + roomName;
+	} else {
+        apiUrl = apiUrl + roomName;
+    }
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -28,7 +35,7 @@ var joinRoom = function (roomName, callback) {
 
         }
     };
-    xhttp.open("GET", "../api/get-room/?roomId=" + roomName, true);
+    xhttp.open("GET", apiUrl, true);
     xhttp.send();
 };
 
