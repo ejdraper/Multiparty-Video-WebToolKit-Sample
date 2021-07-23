@@ -245,12 +245,40 @@ window.onload = function () {
                     plotChat(obj);
                 });
 
-                // Stream went out of Room
-                room.addEventListener("stream-removed", function (event) {
-                    console.log(event);
+                var logEvent = (name, event) => {
+                    console.log(`[EVENTS] ${name}`, event);
+                };
+
+                var logListener = (name) => {
+                    room.addEventListener(name, (e) => {
+                        logEvent(name, e);
+                    });
+                };
+
+                room.addEventListener("canvas-started", function (event) {
+                    logEvent('canvas-started', event);
+                    var s = room.remoteStreams.get(event.message.streamId);
+                    room.subscribe(s);
+                    setLiveStream(s, "Annotating");
                 });
+
+                logListener('stream-added');
+                logListener('stream-removed');
+                logListener('start-annotation-success');
+                logListener('user-connected');
+                logListener('user-disconnected');
+                logListener('share-started');
+                logListener('share-stopped');
+                logListener('canvas-stopped');
             }
         });
+    });
+}
+
+function startAnnotation() {
+    console.log('startAnnotation');
+    room.startAnnotation(localStream, (res) => {
+        console.log('startAnnotation.res', res);
     });
 }
 
